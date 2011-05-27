@@ -7,8 +7,8 @@ EAPI=3
 inherit git
 
 DESCRIPTION="libmatroska alternative written in C"
-HOMEPAGE="http://repo.or.cz/w/libmkv.git"
-EGIT_REPO_URI="git://repo.or.cz/libmkv.git"
+HOMEPAGE="https://github.com/saintdev/libmkv"
+EGIT_REPO_URI="git://github.com/saintdev/libmkv.git"
 
 LICENSE="GPLv3"
 SLOT="0"
