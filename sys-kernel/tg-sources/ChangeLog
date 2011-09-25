@@ -1,0 +1,14 @@
+# ChangeLog for sys-kernel/tg-sources
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*tg-sources-3.0.4 (25 Sep 2011)
+
+  25 Sep 2011; <thomasg@gentoo.org> +tg-sources-3.0.4.ebuild:
+  tg-sources: initial add based on hardened-sources-3.0.4
+
+  tg sources is a package based on gentoo's hardened-sources which
+  additionally includes a recent tomoyo patchset (1.8 series).
+  It stands for Tomoyo+Grsec/Gentoo sources, or ThomasG-sources,
+  as you please :)
+
