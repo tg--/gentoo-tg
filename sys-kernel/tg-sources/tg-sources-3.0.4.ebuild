@@ -35,7 +35,7 @@ src_prepare () {
 	# workaround: make patch apply with existing gresc
 	sed -i '/<linux\/bsearch.h>/a\ #include <linux\/grsecurity.h>' ${CCS_PATCH}
 
-	EPATCH_OPTS="-p1" epatch ${CCS_PATCH}
+	EPATCH_OPTS="-p1 --no-backup-if-mismatch" epatch ${CCS_PATCH}
 }
 
 pkg_postinst() {
