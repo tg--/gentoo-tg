@@ -33,7 +33,7 @@ src_prepare () {
 	unpack "${CCS_PACKAGE}"
 
 	# workaround: make patch apply with existing gresc
-	sed '/<linux\/bsearch.h>/a\ #include <linux\/grsecurity.h>' ${CCS_PATCH} > ${CCS_PATCH}
+	sed -i '/<linux\/bsearch.h>/a\ #include <linux\/grsecurity.h>' ${CCS_PATCH}
 
 	EPATCH_OPTS="-p1" epatch ${CCS_PATCH}
 }
