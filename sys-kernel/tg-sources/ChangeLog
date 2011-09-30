@@ -2,9 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*tg-sources-3.0.4-r1 (30 Sep 2011)
+
+  30 Sep 2011; <thomas@gstaedtner.net> +tg-sources-3.0.4-r1.ebuild:
+  tg-sources-3.0.4-r1.ebuild
+
+  bump ebuild rev, include latest ccs-patch (1.8.3)
+
 *tg-sources-3.0.4 (25 Sep 2011)
 
-  25 Sep 2011; <thomasg@gentoo.org> +tg-sources-3.0.4.ebuild:
+  25 Sep 2011; <thomas@gstaedtner.net> +tg-sources-3.0.4.ebuild:
   tg-sources: initial add based on hardened-sources-3.0.4
 
   tg sources is a package based on gentoo's hardened-sources which
