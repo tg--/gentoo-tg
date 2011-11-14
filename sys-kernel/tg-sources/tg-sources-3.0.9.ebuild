@@ -18,7 +18,7 @@ SRC_URI="${KERNEL_URI} ${HGPV_URI} ${GENPATCHES_URI} ${ARCH_URI}
 		 mirror://sourceforge.jp/tomoyo/49684/ccs-patch-${CCS_VERSION}.tar.gz"
 
 UNIPATCH_LIST="${DISTDIR}/hardened-patches-${HGPV}.extras.tar.bz2"
-UNIPATCH_EXCLUDE="4200_fbcondecor-0.9.6.patch"
+UNIPATCH_EXCLUDE="4200_fbcondecor-0.9.6.patch 1007_linux-3.0.8.patch"
 
 DESCRIPTION="tg (Tomoyo+Grsec/Gentoo) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
 HOMEPAGE="http://www.gentoo.org/proj/en/hardened/ https://gitorious.org/tg/gentoo-tg/"
