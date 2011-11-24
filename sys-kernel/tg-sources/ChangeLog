@@ -2,6 +2,19 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*tg-sources-3.1.1 (24 Nov 2011)
+
+  24 Nov 2011; <thomasg@gentoo.org> -tg-sources-3.0.4.ebuild,
+  -tg-sources-3.0.4-r1.ebuild, -tg-sources-3.0.9.ebuild,
+  +tg-sources-3.1.1.ebuild,
+  +files/ccs-patch-3.1.1-grsecurity-201111201943.diff,
+  +files/ccs-patch-3.1.1-grsecurity-201111201943.diff.sig,
+  +tg-sources-3.1.1.ebuild.sig, +metadata.xml:
+  bump ebuild to 3.1.1, all old ebuilds have been removed
+
+  this includes signing for patches and ebuilds and addition of a metadata.xml
+  file
+
 *tg-sources-3.0.4-r1 (30 Sep 2011)
 
   30 Sep 2011; <thomas@gstaedtner.net> +tg-sources-3.0.4-r1.ebuild:

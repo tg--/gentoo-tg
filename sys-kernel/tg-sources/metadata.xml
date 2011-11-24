@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>thomas@gstaedtner.net</email>
+  <name>Thomas Gstädtner</name>
+<longdescription lang="en">
+  This package consists of kernel.org's stable sources plus the latest grsec
+  patch (usually the testing version) as well as tomoyo 1.8, aka ccs-patch.
+  As the latter's grsec compatible patch for new versions usually is not
+  available upstream outside of SVN, it is included here. Also, it includes
+  thomasg's signature to verify that you get the same patch as has been tested.
+  Upstream only signs release packages, which do not include the needed patch.
+  The key id is F9E2C448 - get it at MITs PGP keyserver for example.
+  The ebuild is signed as well, grsec is signed by Spender upstream.
+</longdescription>
+</pkgmetadata>
+
