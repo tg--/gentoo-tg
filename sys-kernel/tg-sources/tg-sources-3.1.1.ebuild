@@ -13,14 +13,21 @@ GRSEC_DATE="201111201943"
 GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
 
 CCS_VERSION="1.8.3"
+CCS_DATE="20111118"
 
-SRC_URI="${KERNEL_URI} ${ARCH_URI} ${GRSEC_URI}"
+SRC_URI="${KERNEL_URI} ${ARCH_URI} ${GRSEC_URI}
+		 mirror://sourceforge.jp/tomoyo/49684/ccs-patch-${CCS_VERSION}-${CCS_DATE}.tar.gz"
 
 DESCRIPTION="tg (Tomoyo+Grsec) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
 HOMEPAGE="https://gitorious.org/tg/gentoo-tg/"
 IUSE=""
 
 KEYWORDS="~amd64"
+
+src_unpack () {
+	kernel-2_src_unpack
+	unpack "ccs-patch-${CCS_VERSION}-${CCS_DATE}.tar.gz"
+}
 
 src_prepare () {
 	epatch "${DISTDIR}/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
