@@ -10,15 +10,21 @@ detect_version
 
 GRSEC_VERSION="2.2.2"
 GRSEC_DATE="201111201943"
-GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
+#GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
 
 CCS_VERSION="1.8.3"
 CCS_DATE="20111118"
 
-SRC_URI="${KERNEL_URI} ${ARCH_URI} ${GRSEC_URI}
+HGPV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}-2"
+HGPV_URI="http://dev.gentoo.org/~blueness/hardened-sources/hardened-patches/hardened-patches-${HGPV}.extras.tar.bz2"
+
+SRC_URI="${KERNEL_URI} ${HGPV_URI} ${GENPATCHES_URI} ${ARCH_URI} ${GRSEC_URI}
 		 mirror://sourceforge.jp/tomoyo/49684/ccs-patch-${CCS_VERSION}-${CCS_DATE}.tar.gz"
 
-DESCRIPTION="tg (Tomoyo+Grsec) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
+UNIPATCH_LIST="${DISTDIR}/hardened-patches-${HGPV}.extras.tar.bz2"
+UNIPATCH_EXCLUDE="4200_fbcondecor-0.9.6.patch "
+
+DESCRIPTION="tg (Tomoyo+Grsec/Gentoo) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
 HOMEPAGE="https://gitorious.org/tg/gentoo-tg/"
 IUSE=""
 
@@ -30,7 +36,7 @@ src_unpack () {
 }
 
 src_prepare () {
-	epatch "${DISTDIR}/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
+	unipatch
 	epatch "${FILESDIR}/ccs-patch-${PV}-grsecurity-${GRSEC_DATE}.diff"
 }
 
