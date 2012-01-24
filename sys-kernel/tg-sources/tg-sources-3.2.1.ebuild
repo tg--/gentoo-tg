@@ -1,6 +1,5 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/hardened-sources/hardened-sources-3.0.4-r2.ebuild,v 1.1 2011/09/15 22:16:19 blueness Exp $
 
 EAPI="4"
 ETYPE="sources"
@@ -9,22 +8,16 @@ inherit kernel-2
 detect_version
 
 GRSEC_VERSION="2.2.2"
-GRSEC_DATE="201111201943"
-#GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
+GRSEC_DATE="201201221501"
+GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
 
 CCS_VERSION="1.8.3"
-CCS_DATE="20111118"
+CCS_DATE="20120120"
 
-HGPV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}-2"
-HGPV_URI="http://dev.gentoo.org/~blueness/hardened-sources/hardened-patches/hardened-patches-${HGPV}.extras.tar.bz2"
-
-SRC_URI="${KERNEL_URI} ${HGPV_URI} ${GENPATCHES_URI} ${ARCH_URI} ${GRSEC_URI}
+SRC_URI="${KERNEL_URI} ${ARCH_URI} ${GRSEC_URI}
 		 mirror://sourceforge.jp/tomoyo/49684/ccs-patch-${CCS_VERSION}-${CCS_DATE}.tar.gz"
 
-UNIPATCH_LIST="${DISTDIR}/hardened-patches-${HGPV}.extras.tar.bz2"
-UNIPATCH_EXCLUDE="4200_fbcondecor-0.9.6.patch "
-
-DESCRIPTION="tg (Tomoyo+Grsec/Gentoo) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
+DESCRIPTION="tg (Tomoyo+Grsec) kernel sources (kernel series ${KV_MAJOR}.${KV_MINOR})"
 HOMEPAGE="https://gitorious.org/tg/gentoo-tg/"
 IUSE=""
 
@@ -36,8 +29,13 @@ src_unpack () {
 }
 
 src_prepare () {
-	unipatch
-	epatch "${FILESDIR}/ccs-patch-${PV}-grsecurity-${GRSEC_DATE}.diff"
+	epatch "${DISTDIR}/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
+
+	# work around ccs not applying after grsec patch (upstream only provides
+	# grsec-capable patches very infrequently)
+	CCS_PATCH="${WORKDIR}/linux-${KV_FULL}/patches/ccs-patch-${KV_MAJOR}.${KV_MINOR}.diff"
+	sed -i '/<linux\/bsearch.h>/a\ #include <linux\/grsecurity.h>' ${CCS_PATCH}
+	epatch ${CCS_PATCH}
 }
 
 pkg_postinst() {
