@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*tg-sources-3.2.9 (05 Mar 2012)
+
+  05 Mar 2012; <thomasg@gentoo.org> +tg-sources-3.2.9.ebuild,
+  +tg-sources-3.2.9.ebuild.sig:
+  bump to 3.2.9
+
 *tg-sources-3.2.1 (24 Jan 2012)
 
   24 Jan 2012; <thomasg@gentoo.org> -tg-sources-3.1.1.ebuild,
