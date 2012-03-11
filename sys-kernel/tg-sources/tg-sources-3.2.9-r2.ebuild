@@ -7,12 +7,12 @@ ETYPE="sources"
 inherit kernel-2
 detect_version
 
-GRSEC_VERSION="2.2.2"
-GRSEC_DATE="201201221501"
+GRSEC_VERSION="2.9"
+GRSEC_DATE="201203062051"
 GRSEC_URI="http://grsecurity.net/test/grsecurity-${GRSEC_VERSION}-${PV}-${GRSEC_DATE}.patch"
 
 CCS_VERSION="1.8.3"
-CCS_DATE="20120120"
+CCS_DATE="20120301"
 
 SRC_URI="${KERNEL_URI} ${ARCH_URI} ${GRSEC_URI}
 		 mirror://sourceforge.jp/tomoyo/49684/ccs-patch-${CCS_VERSION}-${CCS_DATE}.tar.gz"
