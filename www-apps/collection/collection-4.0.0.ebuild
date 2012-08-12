@@ -15,6 +15,8 @@ IUSE=""
 
 DEPEND="dev-libs/fcgi
 		net-analyzer/rrdtool
-		dev-libs/yajl"
+		<dev-libs/yajl-2.0.0"
 
 RDEPEND="${DEPEND}"
+
+WANT_AUTOMAKE=1.11
