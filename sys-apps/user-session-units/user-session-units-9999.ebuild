@@ -19,3 +19,6 @@ DEPEND="sys-apps/systemd
 		sys-apps/xorg-launch-helper"
 RDEPEND="${DEPEND}"
 
+src_configure() {
+	./autogen.sh || die "autogen.sh failed."
+}
