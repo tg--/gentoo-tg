@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit git
+inherit git-2
 
 DESCRIPTION="systemd user session unit files"
 HOMEPAGE="http://github.com/sofar/user-session-units"
@@ -19,6 +19,6 @@ DEPEND="sys-apps/systemd
 		sys-apps/xorg-launch-helper"
 RDEPEND="${DEPEND}"
 
-src_configure() {
+src_prepare() {
 	./autogen.sh || die "autogen.sh failed."
 }
