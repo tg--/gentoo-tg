@@ -24,5 +24,7 @@ RDEPEND="${DEPEND}"
 WANT_AUTOMAKE=1.11
 
 src_prepare() {
+		epatch ${FILESDIR}/9999-fix-build-with-recent-automake-versions.patch
+		epatch ${FILESDIR}/9999-ran-autoupdate-to-fix-autoconf-warnings.patch
 		./autogen.sh || die "Bootstrap failed."
 }
