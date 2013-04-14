@@ -2,10 +2,10 @@
 <layman>
  <overlay
    type = "git"
-   src = "git://gitorious.org/tg/gentoo-tg.git"
+   src = "git://github.com/tg--/gentoo-tg.git"
    contact = "thomas@gstaedtner.net (mail or xmpp)"
    name = "tg" >
-  <link>http://gitorious.org/tg/gentoo-tg</link>
+  <link>https://github.com/tg--/gentoo-tg</link>
   <description>thomasg's public overlay</description>
  </overlay>
 </layman>
