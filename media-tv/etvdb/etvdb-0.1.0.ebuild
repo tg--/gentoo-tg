@@ -4,11 +4,11 @@
 
 EAPI=4
 
-inherit cmake-utils git-2
+inherit cmake-utils
 
-DESCRIPTION="${PN} is a C library and CLI frontend for thetvdb.com"
+DESCRIPTION="${PN} is a C library for thetvdb.com"
 HOMEPAGE="http://etvdb.gstaedtner.net"
-EGIT_REPO_URI="git://github.com/tg--/${PN}.git"
+SRC_URI="https://github.com/tg--/${PN}/archive/v${PV}.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
