@@ -12,7 +12,7 @@ EGIT_REPO_URI="git://github.com/tg--/${PN}.git"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 DEPEND="|| ( dev-libs/efl dev-libs/eina )
