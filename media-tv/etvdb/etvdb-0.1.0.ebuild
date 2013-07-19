@@ -8,7 +8,7 @@ inherit cmake-utils
 
 DESCRIPTION="${PN} is a C library for thetvdb.com"
 HOMEPAGE="http://etvdb.gstaedtner.net"
-SRC_URI="https://github.com/tg--/${PN}/archive/v${PV}.tar.gz"
+SRC_URI="https://github.com/tg--/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"
