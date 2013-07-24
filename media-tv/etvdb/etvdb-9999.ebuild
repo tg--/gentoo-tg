@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-			$(cmake-utils_use_enable debug DEBUG)
+			$(cmake-utils_use debug DEBUG)
 	)
 
 	cmake-utils_src_configure
