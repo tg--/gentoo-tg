@@ -13,8 +13,16 @@ EGIT_REPO_URI="git://github.com/tg--/${PN}.git"
 LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="debug"
 
 DEPEND="|| ( dev-libs/efl dev-libs/eina )
 	net-misc/curl"
 RDEPEND="${DEPEND}"
+
+src_configure() {
+	local mycmakeargs=(
+			$(cmake-utils_use_enable debug DEBUG)
+	)
+
+	cmake-utils_src_configure
+}
