@@ -1,0 +1,159 @@
+From a83d44a8369b4993beb18e0e19c08f2411da5659 Mon Sep 17 00:00:00 2001
+From: Colin Walters <walters@verbum.org>
+Date: Tue, 30 Jul 2013 10:00:29 -0400
+Subject: [PATCH] Install systemd user units, support per-user bus by default
+
+Work in progress.
+---
+ bus/Makefile.am                |   11 ++++++++++-
+ bus/user-units/dbus.service.in |    8 ++++++++
+ bus/user-units/dbus.socket.in  |    6 ++++++
+ configure.ac                   |    4 ++++
+ dbus/dbus-sysdeps-unix.c       |   35 ++++++++++++++++++++++++++++++++++-
+ 5 files changed, 62 insertions(+), 2 deletions(-)
+ create mode 100644 bus/user-units/dbus.service.in
+ create mode 100644 bus/user-units/dbus.socket.in
+
+diff --git a/bus/Makefile.am b/bus/Makefile.am
+index cd0c67d..2d9483c 100644
+--- a/bus/Makefile.am
++++ b/bus/Makefile.am
+@@ -219,6 +219,8 @@ if HAVE_SYSTEMD
+ 	ln -fs ../dbus.socket $(DESTDIR)$(systemdsystemunitdir)/sockets.target.wants/dbus.socket
+ 	$(mkinstalldirs) $(DESTDIR)$(systemdsystemunitdir)/multi-user.target.wants
+ 	ln -fs ../dbus.service $(DESTDIR)$(systemdsystemunitdir)/multi-user.target.wants/dbus.service
++	$(mkinstalldirs) $(DESTDIR)$(systemduserunitdir)/sockets.target.wants
++	ln -fs ../dbus.socket $(DESTDIR)$(systemduserunitdir)/sockets.target.wants/dbus.socket
+ endif
+ 
+ if DBUS_UNIX
+@@ -271,11 +273,18 @@ endif
+ if HAVE_SYSTEMD
+ SCRIPT_IN_FILES += \
+ 	dbus.service.in \
+-	dbus.socket.in
++	dbus.socket.in \
++	user-units/dbus.service.in \
++	user-units/dbus.socket.in \
++	$(NULL)
+ 
+ systemdsystemunit_DATA = \
+ 	dbus.service \
+ 	dbus.socket
++
++systemduserunit_DATA = \
++	user-units/dbus.service \
++	user-units/dbus.socket
+ endif
+ 
+ #### Extra dist
+diff --git a/bus/user-units/dbus.service.in b/bus/user-units/dbus.service.in
+new file mode 100644
+index 0000000..fba5b4f
+--- /dev/null
++++ b/bus/user-units/dbus.service.in
+@@ -0,0 +1,8 @@
++[Unit]
++Description=D-Bus User Bus
++Documentation=man:dbus-daemon(1)
++Requires=dbus.socket
++
++[Service]
++ExecStart=@EXPANDED_BINDIR@/dbus-daemon --session --address=systemd: --nofork --systemd-activation
++ExecReload=@EXPANDED_BINDIR@/dbus-send --print-reply --system --type=method_call --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
+diff --git a/bus/user-units/dbus.socket.in b/bus/user-units/dbus.socket.in
+new file mode 100644
+index 0000000..3cbc8d7
+--- /dev/null
++++ b/bus/user-units/dbus.socket.in
+@@ -0,0 +1,6 @@
++[Unit]
++Description=D-Bus User Bus Socket
++Before=sockets.target
++
++[Socket]
++ListenStream=%t/dbus/user_bus_socket
+diff --git a/configure.ac b/configure.ac
+index c80fcfc..9c3c00a 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1509,6 +1509,8 @@ AS_HELP_STRING([--with-systemdsystemunitdir=DIR], [Directory for systemd service
+     ])
+ if test "x$with_systemdsystemunitdir" != xno; then
+    AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
++   with_systemduserunitdir=$($PKG_CONFIG --variable=systemduserunitdir systemd)
++   AC_SUBST([systemduserunitdir], [$with_systemduserunitdir])
+ fi
+ AM_CONDITIONAL(HAVE_SYSTEMD, [test -n "$with_systemdsystemunitdir" -a "x$with_systemdsystemunitdir" != xno ])
+ 
+@@ -1768,6 +1770,8 @@ bus/org.freedesktop.dbus-session.plist
+ bus/rc.messagebus
+ bus/dbus.service
+ bus/dbus.socket
++bus/user-units/dbus.service
++bus/user-units/dbus.socket
+ Makefile
+ dbus/Makefile
+ bus/Makefile
+diff --git a/dbus/dbus-sysdeps-unix.c b/dbus/dbus-sysdeps-unix.c
+index c2e6f9f..b6ccda4 100644
+--- a/dbus/dbus-sysdeps-unix.c
++++ b/dbus/dbus-sysdeps-unix.c
+@@ -29,6 +29,7 @@
+ #include "dbus-sysdeps-unix.h"
+ #include "dbus-threads.h"
+ #include "dbus-protocol.h"
++#include "dbus-file.h"
+ #include "dbus-transport.h"
+ #include "dbus-string.h"
+ #include "dbus-userdb.h"
+@@ -3707,13 +3708,45 @@ _dbus_lookup_session_address (dbus_bool_t *supported,
+   *supported = TRUE;
+   return _dbus_lookup_session_address_launchd (address, error);
+ #else
++  const char *runtime_dir = _dbus_getenv ("XDG_RUNTIME_DIR");
++  dbus_bool_t ret = FALSE;
++  if (runtime_dir != NULL)
++    {
++      struct stat stbuf;
++      DBusString user_bus_path;
++
++      if (!_dbus_string_init (&user_bus_path))
++        return FALSE;
++      if (!_dbus_string_append_printf (&user_bus_path, "%s/dbus/user_bus_socket", runtime_dir))
++        goto out;
++      if (lstat (_dbus_string_get_const_data (&user_bus_path), &stbuf) != -1)
++        {
++          if (!_dbus_string_append (address, "unix:path="))
++            goto out;
++          if (!_dbus_string_append (address, _dbus_string_get_const_data (&user_bus_path)))
++            goto out;
++          *supported = TRUE;
++          ret = TRUE;
++        }
++      else
++        {
++          _dbus_string_shorten (address, _dbus_string_get_length (address));
++          /* Not an error */
++          *supported = FALSE;
++          ret = TRUE;
++        }
++
++    out:
++      _dbus_string_free (&user_bus_path);
++      return ret;
++    }
+   /* On non-Mac Unix platforms, if the session address isn't already
+    * set in DBUS_SESSION_BUS_ADDRESS environment variable, we punt and
+    * fall back to the autolaunch: global default; see
+    * init_session_address in dbus/dbus-bus.c. */
++#endif
+   *supported = FALSE;
+   return TRUE;
+-#endif
+ }
+ 
+ /**
+-- 
+1.7.1
+
