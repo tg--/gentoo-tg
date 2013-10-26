@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit git
+inherit git-2
 
 DESCRIPTION="Collection is a web-based front-end for collectd"
 HOMEPAGE="http://octo.it/c4/"
