@@ -1,10 +1,10 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.6.14.ebuild,v 1.1 2013/09/22 16:20:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.6.18-r1.ebuild,v 1.4 2013/12/01 16:18:28 mgorny Exp $
 
 EAPI=5
 PYTHON_COMPAT=( python2_7 )
-inherit autotools eutils linux-info flag-o-matic python-any-r1 systemd virtualx user
+inherit autotools eutils linux-info flag-o-matic multilib-minimal python-any-r1 systemd virtualx user
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -24,7 +24,11 @@ RDEPEND=">=dev-libs/expat-2
 	X? (
 		x11-libs/libX11
 		x11-libs/libXt
-		)"
+		)
+	abi_x86_32? (
+		!<=app-emulation/emul-linux-x86-baselibs-20131008-r4
+		!app-emulation/emul-linux-x86-baselibs[-abi_x86_32(-)]
+	)"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
 	doc? (
@@ -37,8 +41,6 @@ DEPEND="${RDEPEND}
 		${PYTHON_DEPS}
 		)"
 
-# out of sources build directory
-BD=${WORKDIR}/${P}-build
 # out of sources build dir for make check
 TBD=${WORKDIR}/${P}-tests-build
 
@@ -69,11 +71,18 @@ src_prepare() {
 	eautoreconf
 }
 
-src_configure() {
-	local myconf
+multilib_src_configure() {
+	local docconf myconf
 
 	# so we can get backtraces from apps
-	append-flags -rdynamic
+	case ${CHOST} in
+		*-mingw*)
+			# error: unrecognized command line option '-rdynamic' wrt #488036
+			;;
+		*)
+			append-flags -rdynamic
+			;;
+	esac
 
 	# libaudit is *only* used in DBus wrt SELinux support, so disable it, if
 	# not on an SELinux profile.
@@ -103,14 +112,33 @@ src_configure() {
 		"$(systemd_with_unitdir)"
 		)
 
-	mkdir "${BD}"
-	cd "${BD}"
-	einfo "Running configure in ${BD}"
-	ECONF_SOURCE="${S}" econf "${myconf[@]}" \
-		$(use_enable doc xml-docs) \
-		$(use_enable doc doxygen-docs)
+	if multilib_build_binaries; then
+		docconf=(
+			$(use_enable doc xml-docs) \
+			$(use_enable doc doxygen-docs)
+		)
+	else
+		docconf=(
+			--disable-xml-docs
+			--disable-doxygen-docs
+		)
+		myconf+=(
+			--disable-selinux
+			--disable-libaudit
+			--disable-systemd
+			--without-x
 
-	if use test; then
+			# libxml is easier to fake since it uses pkg-config
+			--with-xml=libxml
+			LIBXML_CFLAGS=' '
+			LIBXML_LIBS=' '
+		)
+	fi
+
+	einfo "Running configure in ${BUILD_DIR}"
+	ECONF_SOURCE="${S}" econf "${myconf[@]}" "${docconf[@]}"
+
+	if multilib_build_binaries && use test; then
 		mkdir "${TBD}"
 		cd "${TBD}"
 		einfo "Running configure in ${TBD}"
@@ -122,19 +150,22 @@ src_configure() {
 	fi
 }
 
-src_compile() {
-	# after the compile, it uses a selinuxfs interface to
-	# check if the SELinux policy has the right support
-	use selinux && addwrite /selinux/access
+multilib_src_compile() {
+	if multilib_build_binaries; then
+		# after the compile, it uses a selinuxfs interface to
+		# check if the SELinux policy has the right support
+		use selinux && addwrite /selinux/access
 
-	cd "${BD}"
-	einfo "Running make in ${BD}"
-	emake
-
-	if use test; then
-		cd "${TBD}"
-		einfo "Running make in ${TBD}"
+		einfo "Running make in ${BUILD_DIR}"
 		emake
+
+		if multilib_build_binaries && use test; then
+			cd "${TBD}"
+			einfo "Running make in ${TBD}"
+			emake
+		fi
+	else
+		emake -C dbus libdbus-1.la
 	fi
 }
 
@@ -143,7 +174,18 @@ src_test() {
 	DBUS_VERBOSE=1 Xemake -j1 check
 }
 
-src_install() {
+multilib_src_install() {
+	if multilib_build_binaries; then
+		emake DESTDIR="${D}" install
+	else
+		emake DESTDIR="${D}" install-pkgconfigDATA
+		emake DESTDIR="${D}" -C dbus \
+			install-libLTLIBRARIES install-dbusincludeHEADERS \
+			install-nodist_dbusarchincludeHEADERS
+	fi
+}
+
+multilib_src_install_all() {
 	newinitd "${FILESDIR}"/dbus.initd dbus
 
 	if use X; then
@@ -161,10 +203,6 @@ src_install() {
 	keepdir /var/lib/dbus
 
 	dodoc AUTHORS ChangeLog HACKING NEWS README doc/TODO
-
-	cd "${BD}"
-	emake DESTDIR="${D}" install
-
 	prune_libtool_files --all
 }
 
