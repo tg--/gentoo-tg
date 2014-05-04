@@ -17,5 +17,6 @@ IUSE=""
 
 DEPEND="|| ( dev-libs/efl
 		( dev-libs/eina 
-		dev-libs/ecore ) )"
+		dev-libs/ecore ) )
+		media-tv/etvdb"
 RDEPEND="${DEPEND}"
