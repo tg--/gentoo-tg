@@ -10,7 +10,7 @@ DESCRIPTION="${PN} is a commandline frontend for thetvdb.com"
 HOMEPAGE="http://etvdb.gstaedtner.net"
 EGIT_REPO_URI="git://github.com/tg--/${PN}.git"
 
-LICENSE="LGPL-3+"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
