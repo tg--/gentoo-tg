@@ -16,8 +16,9 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-RDEPEND=""
-DEPEND=""
+DEPEND="dev-python/dateutils
+		dev-python/purl"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/ThePirateBay-$PV"
 
