@@ -19,10 +19,7 @@ IUSE=""
 RDEPEND=""
 DEPEND=""
 
-python_prepare_all () {
+src_prepare () {
 	# workaround for obsolete argparse dependency
-	#epatch ${FILESDIR}/dont-require-argparse.patch
-	sed -i '/argparse/d' ${P}/${PN}.egg-info/requires.txt
-
-	distutils-r1_python_prepare_all
+	sed -i '/argparse/d' ${S}/setup.py
 }
