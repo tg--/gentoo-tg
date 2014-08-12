@@ -16,7 +16,8 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-DEPEND="dev-python/dateutils
+DEPEND="dev-python/cssselect
+		dev-python/dateutils
 		dev-python/purl"
 RDEPEND="${DEPEND}"
 
