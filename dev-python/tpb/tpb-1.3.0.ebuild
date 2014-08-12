@@ -18,7 +18,8 @@ IUSE=""
 
 DEPEND="dev-python/cssselect
 		dev-python/dateutils
-		dev-python/purl"
+		dev-python/purl
+		dev-python/pytz"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/ThePirateBay-$PV"
