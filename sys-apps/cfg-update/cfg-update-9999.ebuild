@@ -4,7 +4,7 @@
 
 inherit git-r3
 
-EGIT_REPO_URI="git://moonitor.org/cfg-update.git"
+EGIT_REPO_URI="git://gentoo64.net/cfg-update.git"
 DESCRIPTION="Easy to use GUI & CLI alternative for etc-update with safe automatic updating functionality"
 HOMEPAGE="http://people.zeelandnet.nl/xentric/"
 LICENSE="GPL-2"
@@ -15,7 +15,9 @@ RDEPEND="kde? ( >=x11-misc/sux-1.0
 		x11-apps/xhost )
 	gnome? ( >=x11-misc/sux-1.0
 		x11-apps/xhost
-		>=dev-util/meld-0.9 )"
+		>=dev-util/meld-0.9 )
+		dev-perl/TermReadKey
+		"
 
 S=${WORKDIR}/${PF}
 
