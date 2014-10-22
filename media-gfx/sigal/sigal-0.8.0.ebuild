@@ -17,6 +17,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="dev-python/argh
+        dev-python/click
         dev-python/jinja
         dev-python/markdown
         dev-python/pilkit"
