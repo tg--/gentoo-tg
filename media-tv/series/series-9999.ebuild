@@ -15,7 +15,7 @@ RESTRICT="mirror"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="dbus"
+IUSE=""
 
 DEPEND="dev-python/setuptools"
 RDEPEND="app-misc/tek-utils[${PYTHON_USEDEP}]
@@ -25,4 +25,6 @@ RDEPEND="app-misc/tek-utils[${PYTHON_USEDEP}]
 		 dev-python/factory_boy[${PYTHON_USEDEP}]
 		 dev-python/alembic[${PYTHON_USEDEP}]
 		 dev-python/flask[${PYTHON_USEDEP}]
-		 dev-python/tpb[${PYTHON_USEDEP}]"
+		 dev-python/tpb[${PYTHON_USEDEP}]
+		 dev-python/tvrampage[${PYTHON_USEDEP}]
+		 "
