@@ -16,7 +16,8 @@ KEYWORDS="~amd64"
 IUSE="+azy +email +shotgun"
 
 DEPEND="=dev-libs/efl-9999
-		azy? ( virtual/yacc )"
+		azy? ( virtual/yacc
+			dev-util/re2c )"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
