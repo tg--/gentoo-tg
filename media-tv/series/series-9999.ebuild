@@ -27,4 +27,5 @@ RDEPEND="app-misc/tek-utils[${PYTHON_USEDEP}]
 		 dev-python/flask[${PYTHON_USEDEP}]
 		 dev-python/tpb[${PYTHON_USEDEP}]
 		 dev-python/tvrampage[${PYTHON_USEDEP}]
+		 dev-python/python-dateutil[${PYTHON_USEDEP}]
 		 "
