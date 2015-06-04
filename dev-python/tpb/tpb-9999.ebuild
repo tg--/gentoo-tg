@@ -22,8 +22,6 @@ DEPEND="dev-python/cssselect
 		dev-python/pytz"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/ThePirateBay-$PV"
-
 src_prepare()
 {
 	sed -i "s/,'tests'//" "$S/setup.py"
