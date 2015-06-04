@@ -24,5 +24,5 @@ RDEPEND="${DEPEND}"
 
 src_prepare()
 {
-	sed -i "s/,'tests'//" "$S/setup.py"
+	sed -i "s/, 'tests'//" "$S/setup.py"
 }
