@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=5
-PYTHON_COMPAT=( python{3_3,3_4} )
+PYTHON_COMPAT=( python3_{3,4,5} )
 EGIT_REPO_URI="git://moonitor.org/pytek.git"
 
 inherit git-r3 distutils-r1
