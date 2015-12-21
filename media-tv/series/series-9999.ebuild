@@ -7,9 +7,9 @@ PYTHON_COMPAT=( python3_{3,4,5} )
 
 inherit git-r3 distutils-r1
 
-EGIT_REPO_URI="git://gentoo64.net/series.git"
+EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/series.git"
 
-HOMEPAGE="http://gentoo64.net"
+HOMEPAGE="https://gitlab.ternarypulsar.com/python/series"
 DESCRIPTION="Series Management Tool"
 RESTRICT="mirror"
 LICENSE="GPL-3"

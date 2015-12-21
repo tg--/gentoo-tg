@@ -4,7 +4,7 @@
 
 EAPI=5
 PYTHON_COMPAT=( python3_{3,4,5} )
-EGIT_REPO_URI="git://moonitor.org/pytek.git"
+EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/tek.git"
 
 inherit git-r3 distutils-r1
 

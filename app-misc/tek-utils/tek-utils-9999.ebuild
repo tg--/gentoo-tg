@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{3,4,5} )
 
 inherit git-r3 distutils-r1
 
-EGIT_REPO_URI="git://moonitor.org/tek-utils.git"
+EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/tek-utils.git"
 HOMEPAGE=""
 DESCRIPTION="collection of utilities"
 RESTRICT="mirror"
