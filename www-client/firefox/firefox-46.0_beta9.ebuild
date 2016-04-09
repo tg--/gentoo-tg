@@ -65,17 +65,17 @@ DEPEND="${RDEPEND}
 if [[ ${PV} =~ alpha ]]; then
 	CHANGESET="8a3042764de7"
 	SRC_URI="${SRC_URI}
-		http://dev.gentoo.org/~nirbheek/mozilla/firefox/firefox-${MOZ_PV}_${CHANGESET}.source.tar.bz2"
+		http://dev.gentoo.org/~nirbheek/mozilla/firefox/firefox-${MOZ_PV}_${CHANGESET}.source.tar.xz"
 	S="${WORKDIR}/mozilla-aurora-${CHANGESET}"
 elif [[ ${PV} =~ beta ]]; then
 	S="${WORKDIR}/mozilla-beta"
 	SRC_URI="${SRC_URI}
-		${MOZ_FTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.bz2
-		${MOZ_HTTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.bz2"
+		${MOZ_FTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz
+		${MOZ_HTTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz"
 else
 	SRC_URI="${SRC_URI}
-		${MOZ_FTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.bz2
-		${MOZ_HTTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.bz2"
+		${MOZ_FTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz
+		${MOZ_HTTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz"
 	if [[ ${MOZ_ESR} == 1 ]]; then
 		S="${WORKDIR}/mozilla-esr${PV%%.*}"
 	else
