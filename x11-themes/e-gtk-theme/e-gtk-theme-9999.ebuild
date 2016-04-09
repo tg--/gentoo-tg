@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils git-2
+inherit eutils git-r3
 
 DESCRIPTION="a gtk theme to match enlightenment DR17 default theme"
 HOMEPAGE="https://github.com/tokiclover/e-gtk-theme"

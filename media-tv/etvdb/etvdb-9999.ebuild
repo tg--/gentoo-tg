@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
-inherit cmake-utils git-2
+inherit cmake-utils git-r3
 
 DESCRIPTION="${PN} is a C library and CLI frontend for thetvdb.com"
 HOMEPAGE="http://etvdb.gstaedtner.net"
