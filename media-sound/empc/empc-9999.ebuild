@@ -16,7 +16,6 @@ KEYWORDS=""
 IUSE="+elyr glyr id3"
 
 DEPEND=">=dev-libs/efl-1.12
-		>=media-libs/elementary-1.12
 		media-libs/libmpdclient
 		net-libs/maelstrom[azy]
 		glyr? ( media-libs/glyr )
@@ -33,6 +32,6 @@ src_configure() {
 		$(use_enable glyr module-glyr)
 		$(use_enable id3 module-id3-loader)
 	"
-	
+
 	econf ${myconf} || die "configure failed"
 }
