@@ -68,7 +68,7 @@ if [[ ${PV} =~ alpha ]]; then
 		http://dev.gentoo.org/~nirbheek/mozilla/firefox/firefox-${MOZ_PV}_${CHANGESET}.source.tar.xz"
 	S="${WORKDIR}/mozilla-aurora-${CHANGESET}"
 elif [[ ${PV} =~ beta ]]; then
-	S="${WORKDIR}/mozilla-beta"
+	S="${WORKDIR}/firefox-${MOZ_PV}"
 	SRC_URI="${SRC_URI}
 		${MOZ_FTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz
 		${MOZ_HTTP_URI}/${MOZ_PV}/source/firefox-${MOZ_PV}.source.tar.xz"
