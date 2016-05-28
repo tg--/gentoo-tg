@@ -1,7 +1,3 @@
-# Copyright 2013 gentoo64.net
-# Distributed under the terms of the GNU General Public License v3
-# $Header: $
-
 EAPI=5
 PYTHON_COMPAT=( python3_{3,4,5} )
 EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/tek.git"
