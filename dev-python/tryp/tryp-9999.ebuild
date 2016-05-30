@@ -13,4 +13,6 @@ KEYWORDS="amd64 x86"
 IUSE=""
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 RDEPEND="dev-python/toolz[${PYTHON_USEDEP}]
-		 dev-python/fn[${PYTHON_USEDEP}]"
+		 dev-python/fn[${PYTHON_USEDEP}]
+		 dev-python/lenses[${PYTHON_USEDEP}]
+		 "
