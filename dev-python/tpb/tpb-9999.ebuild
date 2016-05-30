@@ -16,10 +16,10 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-DEPEND="dev-python/cssselect
-		dev-python/dateutils
-		dev-python/purl
-		dev-python/pytz"
+DEPEND="dev-python/cssselect[${PYTHON_USEDEP}]
+		dev-python/dateutils[${PYTHON_USEDEP}]
+		dev-python/purl[${PYTHON_USEDEP}]
+		dev-python/pytz[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 
 src_prepare()
