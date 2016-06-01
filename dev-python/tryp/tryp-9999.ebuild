@@ -1,6 +1,6 @@
 EAPI=5
 PYTHON_COMPAT=( python3_{3,4,5} )
-EGIT_REPO_URI="https://github.com/tek/tryp.py.git"
+EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/tryp.git"
 
 inherit git-r3 distutils-r1
 
