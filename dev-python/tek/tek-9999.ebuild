@@ -13,4 +13,6 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 DEPEND="dev-python/setuptools[${PYTHON_USEDEP}]"
 RDEPEND="dev-python/crystalmethod[${PYTHON_USEDEP}]
-		 dev-python/requests[${PYTHON_USEDEP}]"
+		 dev-python/requests[${PYTHON_USEDEP}]
+		 dev-python/golgi[${PYTHON_USEDEP}]
+		 "
