@@ -15,7 +15,7 @@ IUSE=""
 
 DEPEND="dev-python/setuptools"
 RDEPEND="app-misc/tek-utils[${PYTHON_USEDEP}]
-dev-python/tryp[${PYTHON_USEDEP}]
+dev-python/amino[${PYTHON_USEDEP}]
 dev-python/feedparser[${PYTHON_USEDEP}]
 dev-python/sqlpharmacy[${PYTHON_USEDEP}]
 dev-python/lxml[${PYTHON_USEDEP}]
