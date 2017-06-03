@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=6
 
 inherit cmake-utils
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="|| ( dev-libs/efl
-		( dev-libs/eina 
+		( dev-libs/eina
 		dev-libs/ecore ) )
 		media-tv/etvdb"
 RDEPEND="${DEPEND}"
