@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v3
 
 EAPI="5"
-PYTHON_COMPAT=( python3_{3,4,5} )
+PYTHON_COMPAT=( python3_{5,6} )
 
 EGIT_REPO_URI="git://github.com/tek/sqlpharmacy.git"
 

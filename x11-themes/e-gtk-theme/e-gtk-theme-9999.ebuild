@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: x11-themes/e-gtk-theme/e-gtk-theme-9999.ebuild,v 1.6 2014/11/21 14:23:25 -tclover Exp $
 
-EAPI=5
+EAPI=6
 
 inherit eutils git-r3
 

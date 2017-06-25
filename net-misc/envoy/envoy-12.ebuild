@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=6
 
 DESCRIPTION="A ssh/gpg-agent wrapper leveraging cgroups and systemd/socket activation"
 HOMEPAGE="https://github.com/vodik/envoy"
