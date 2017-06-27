@@ -17,7 +17,7 @@ IUSE="+elyr glyr id3"
 
 DEPEND=">=dev-libs/efl-1.12
 		media-libs/libmpdclient
-		net-libs/maelstrom[azy]
+		net-im/maelstrom[azy]
 		glyr? ( media-libs/glyr )
 		id3? ( media-libs/libid3tag )"
 RDEPEND="${DEPEND}"
