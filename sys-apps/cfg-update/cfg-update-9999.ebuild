@@ -4,7 +4,7 @@
 
 inherit git-r3
 
-EGIT_REPO_URI="https://gitlab.ternarypulsar.com/system/cfg-update.git"
+EGIT_REPO_URI="https://gitlab.tryp.io/system/cfg-update.git"
 DESCRIPTION="Easy to use GUI & CLI alternative for etc-update with safe automatic updating functionality"
 HOMEPAGE="http://people.zeelandnet.nl/xentric/"
 LICENSE="GPL-2"

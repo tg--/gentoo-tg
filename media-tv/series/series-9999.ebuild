@@ -3,9 +3,9 @@ PYTHON_COMPAT=( python3_{5,6} )
 
 inherit git-r3 distutils-r1
 
-EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/series.git"
+EGIT_REPO_URI="https://gitlab.tryp.io/python/series.git"
 
-HOMEPAGE="https://gitlab.ternarypulsar.com/python/series"
+HOMEPAGE="https://gitlab.tryp.io/python/series"
 DESCRIPTION="Series Management Tool"
 RESTRICT="mirror"
 LICENSE="GPL-3"

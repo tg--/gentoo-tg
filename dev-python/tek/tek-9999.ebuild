@@ -1,6 +1,6 @@
 EAPI=6
 PYTHON_COMPAT=( python3_{5,6} )
-EGIT_REPO_URI="https://gitlab.ternarypulsar.com/python/tek.git"
+EGIT_REPO_URI="https://gitlab.tryp.io/python/tek.git"
 
 inherit git-r3 distutils-r1
 
