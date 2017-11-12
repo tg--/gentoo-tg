@@ -15,7 +15,4 @@
 		<remote-id type="github">saimn/sigal</remote-id>
 		<bugs-to>https://github.com/saimn/sigal/issues</bugs-to>
 	</upstream>
-	<use>
-		<flag name="doc">HTML documentation</flag>
-	</use>
 </pkgmetadata>

@@ -20,20 +20,7 @@ DEPEND="dev-python/blinker[${PYTHON_USEDEP}]
 	dev-python/jinja[${PYTHON_USEDEP}]
 	dev-python/markdown[${PYTHON_USEDEP}]
 	dev-python/pillow[${PYTHON_USEDEP}]
-	dev-python/pilkit[${PYTHON_USEDEP}]
-	doc? ( dev-python/sphinx[${PYTHON_USEDEP}]
-		dev-python/sphinxcontrib-issuetracker[${PYTHON_USEDEP}]
-		dev-python/alabaster[${PYTHON_USEDEP}] )"
+	dev-python/pilkit[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 
 DOCS=( README.rst )
-
-python_compile_all() {
-	use doc && emake -C docs html
-}
-
-python_install_all() {
-	use doc && local HTML_DOCS=( docs/_build/html/. )
-
-	distutils-r1_python_install_all
-}
