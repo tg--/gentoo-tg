@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>thomas@gstaedtner.net</email>
+		<name>Thomas Gstädtner</name>
+	</maintainer>
+	<longdescription>PILKit is a collection of utilities for working with PIL (the Python Imaging Library).</longdescription>
+</pkgmetadata>
