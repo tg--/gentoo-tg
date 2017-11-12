@@ -20,6 +20,8 @@ DEPEND="dev-python/pillow"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	default
+
 	# remove tests to avoid collisions
 	rm -rf tests/ || die "Couldn't remove tests!"
 }
