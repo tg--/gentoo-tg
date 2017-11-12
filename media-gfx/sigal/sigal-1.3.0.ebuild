@@ -21,7 +21,9 @@ DEPEND="dev-python/blinker[${PYTHON_USEDEP}]
 	dev-python/markdown[${PYTHON_USEDEP}]
 	dev-python/pillow[${PYTHON_USEDEP}]
 	dev-python/pilkit[${PYTHON_USEDEP}]
-	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
+	doc? ( dev-python/sphinx[${PYTHON_USEDEP}]
+		dev-python/sphinxcontrib-issuetracker[${PYTHON_USEDEP}]
+		dev-python/alabaster[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
 
 DOCS=( README.rst )
