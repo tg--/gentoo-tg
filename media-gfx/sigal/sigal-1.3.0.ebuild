@@ -16,9 +16,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="dev-python/argh
+DEPEND="dev-python/blinker
         dev-python/click
         dev-python/jinja
         dev-python/markdown
+        dev-python/pillow
         dev-python/pilkit"
 RDEPEND="${DEPEND}"
