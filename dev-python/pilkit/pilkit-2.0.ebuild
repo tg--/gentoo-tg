@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4,3_5} )
 
 inherit distutils-r1
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND="dev-python/pillow"
+DEPEND="dev-python/pillow[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
