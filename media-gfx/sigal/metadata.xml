@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>thomas@gstaedtner.net</email>
+		<name>Thomas Gstädtner</name>
+	</maintainer>
+	<longdescription>Sigal is a simple static web gallery generator.</longdescription>
+</pkgmetadata>
