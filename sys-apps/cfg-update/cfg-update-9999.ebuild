@@ -4,6 +4,7 @@
 
 inherit git-r3
 
+EAPI=6
 EGIT_REPO_URI="https://gitlab.tryp.io/sys/cfg-update.git"
 DESCRIPTION="Easy to use GUI & CLI alternative for etc-update with safe automatic updating functionality"
 HOMEPAGE="http://people.zeelandnet.nl/xentric/"
