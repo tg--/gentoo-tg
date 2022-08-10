@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=6
+EAPI=8
 
-inherit cmake-utils
+inherit cmake
 
 DESCRIPTION="${PN} is a commandline frontend for thetvdb.com"
 HOMEPAGE="http://etvdb.gstaedtner.net"
